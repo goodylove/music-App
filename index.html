@@ -10,8 +10,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
-    <script src="./json.js"></script>
-    <script src="./index.js" defer></script>
+    <script src="./json.js" defer></script>
+    <script src="./index.js" defer type="module"></script>
     <title>Music App</title>
   </head>
   <body>
@@ -28,7 +28,12 @@
               />
             </div>
             <div class="song-con">
-              <span class="song-title">African queen</span>
+              <div style="display: flex; flex-direction: column">
+                <span class="song-title" style="padding: 5px 0"
+                  >African queen</span
+                >
+                <span class="airts-name-title">2face</span>
+              </div>
               <span class="music-icon icon">
                 <i class="fas fa-heart"></i>
 
@@ -46,22 +51,20 @@
               <!-- <span class="song-title">African queen</span> -->
               <span class="music-control">
                 <i class="fas fa-repeat-alt"></i>
-                <i class="fas fa-step-backward"></i>
-                <i class="fas fa-play-circle"></i>
-                <i class="fas fa-step-forward"></i>
+                <i class="fas fa-step-backward prev"></i>
+                <i class="fas fa-play-circle play"></i>
+                <i class="fas fa-pause" id="pause"></i>
+
+                <i class="fas fa-step-forward next"></i>
                 <i class="fas fa-list-alt" style="font-size: 15px"></i>
               </span>
             </div>
-            <!-- <span class="btn-con"
-              ><button class="btn">+ Add to cart</button></span
-            > -->
           </div>
+          <div class="allmusic"></div>
           <span class="up"></span>
         </div>
+        <div class="container-2"></div>
       </div>
     </div>
   </body>
-  <!-- <audio
-    src="./music/roddy/Roddy_Ricch_-_Die_Young.jpg"
-  ></audio> -->
 </html>
