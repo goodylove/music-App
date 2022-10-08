@@ -8,33 +8,35 @@ const next = document.querySelector(".next");
 const play = document.querySelector(".play");
 const pause = document.querySelector("#pause");
 const container = document.querySelector(".container");
-const container2 = document.querySelector(".container-2");
+const container2 = document.querySelector(".con");
+const contain = document.querySelector(".container-2");
 const drop = document.querySelector(".drop");
 const song = document.createElement("audio");
 const songTitle = document.querySelector(".song-title");
 const airtsName = document.querySelector(".airts-name-title");
+const timer = document.querySelector(".smal-holder");
 
 let position = 0;
+let currentP = 0;
 // functionalities;
 // 1. function display song to the Dom
-function displaySong() {
-  console.log(position);
-  console.log(musicBank);
-
-  img.src = musicBank[position].imggUrl;
-  (songTitle.innerHTML = musicBank[position].songTitle),
-    (airtsName.innerHTML = musicBank[position].Artist);
+console.log(position);
+function displaySong(a) {
+  img.src = musicBank[a].imggUrl;
+  (songTitle.innerHTML = musicBank[a].songTitle),
+    (airtsName.innerHTML = musicBank[a].Artist);
   airtsName.style.color = "whitesmoke";
-  song.src = musicBank[position].songUrl;
+  song.src = musicBank[a].songUrl;
   song.load();
 }
 
-displaySong();
+displaySong(position);
 // 2. function onclick play song
 function playSong() {
   play.addEventListener("click", () => {
     play.style.display = "none";
     pause.style.display = "block";
+    musicController();
     song.play();
   });
 }
@@ -51,26 +53,28 @@ function pauseSong() {
 pauseSong();
 
 // 4.function onclick to next song
-function nextSong() {
+function nextSong(el) {
   next.addEventListener("click", () => {
-    if (position >= musicBank.length - 1) {
-      position = 0;
-      displaySong();
+    if (el >= musicBank.length - 1) {
+      el = 0;
+      displaySong(el);
     } else {
-      position += 1;
-      displaySong();
+      el += 1;
+      displaySong(el);
     }
     song.play();
   });
 }
-nextSong();
+nextSong(position);
 // 5.function onclick to the prev song
 //
 function prevSong() {
   prev.addEventListener("click", () => {
+    position < 1 ? (position = musicBank.length) : "";
     position -= 1;
-    displaySong();
-    console.log("working");
+    displaySong(position);
+
+    console.log();
     song.play();
   });
 }
@@ -86,7 +90,7 @@ changeCon();
 
 function showAllPlayList() {
   const display = musicBank.map((p) => {
-    const { imggUrl, songTitle, songInfo, id } = p;
+    const { imggUrl, songTitle, songInfo, id, songUrl } = p;
     return `  <div class="playlist" id="${id}">
     <img
       src="${imggUrl}"
@@ -94,12 +98,12 @@ function showAllPlayList() {
       class="img-2"
     />
     <span class="ttile-2">
-      <span>${songTitle}</span
-      ><span class="move" id="marquee"> ${songInfo}
+      <span class="tite">${songTitle}</span
+      ><span class="move"> ${songInfo}
         </span
       >
     </span>
-    <i class="fas fa-music  music-icon"></i>
+    <i class="fas fa-music  music-icon" id="${id}"> </i>
   </div>
   <div class="under"></div>
   `;
@@ -107,30 +111,76 @@ function showAllPlayList() {
   container2.innerHTML = display.join("");
 }
 showAllPlayList();
-const allMq = document.querySelectorAll("#marquee");
+
 const musIcon = document.querySelectorAll(".music-icon");
-const playlist = document.querySelector(".playlist");
+const playList = document.querySelectorAll(".img-2");
 
-// musIcon.forEach((music_icon_el) => {
-//   music_icon_el.addEventListener("click",()=>{
-//     song.play();
-//   })
-//   console.log(mq_el);
-//   new marquee(document.getElementById(mq_el.id));
-// });
+const musicIcons = () => {
+  const getMusicIco = musIcon.forEach((icon_el, i) => {
+    icon_el.addEventListener("click", (e) => {
+      let pel = icon_el.parentElement;
+      const moveSong = pel.querySelector(".move");
+      moveSong.classList.remove("show");
+      const getExactMusic = musicBank.find(({ id }) => {
+        return id == icon_el.id;
+      });
 
-// for (let i = 0; i < musIcon.length; i++) {
-//   musIcon[i].addEventListener("click", () => {
-//     console.log("clicked");
-//     song.play();
-//     new marquee(document.getElementById("marquee"));
-//     console.log(allMq[i].id);
-//   });
-// }
+      song.src = getExactMusic.songUrl;
+      song.play();
+      moveSong.classList.add("show");
+    });
+  });
+};
+musicIcons();
 
-function musicIcon() {
-  song.play();
+function displayEachOnClick() {
+  playList.forEach((play_el, i) => {
+    play_el.addEventListener("click", () => {
+      displaySong(i);
+      container.style.display = "flex";
+      contain.style.display = "none";
+    });
+  });
 }
-// new marquee(document.getElementById("marquee"));
 
-function displayEachOnClick() {}
+displayEachOnClick();
+
+const musicController = () => {
+  song.addEventListener("timeupdate", (e) => {
+    let currentTime = e.target.currentTime;
+    let duration = e.target.duration;
+    let progressWidth = (currentTime / duration) * 100;
+    timer.style.width = `${progressWidth}%`;
+
+    song.addEventListener("loadeddata", (e) => {
+      console.log(e);
+      let current = container.querySelector(".min");
+      let duration = container.querySelector(".sec");
+      let musicDuration = song.duration;
+      // update song duration
+
+      let totalMin = Math.floor(musicDuration / 60);
+      let totalSec = Math.floor(musicDuration % 60);
+      if (totalSec < 10) {
+        totalSec = `0${totalSec}`;
+      }
+      duration.innerText = `${totalMin}:${totalSec}`;
+      // updating playing song current time
+
+      let curentMusic = song.currentTime;
+      let currentMin = Math.floor(curentMusic / 60);
+      let currentSec = Math.floor(curentMusic % 60);
+      if (currentSec < 10) {
+        currentSec = `0${currentSec}`;
+      }
+      current.innerText = `${currentMin}:${currentSec}`;
+    });
+  });
+};
+musicController();
+
+const left = document.querySelector(".left-2");
+left.addEventListener("click", () => {
+  container.style.display = "flex";
+  contain.style.display = "none";
+});

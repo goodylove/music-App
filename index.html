@@ -10,6 +10,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
+
     <script src="./json.js" defer></script>
     <script src="./index.js" defer type="module"></script>
     <title>Music App</title>
@@ -20,6 +21,17 @@
         <div class="container">
           <span class="drop"></span>
           <div class="music">
+            <div
+              style="
+                width: 100%;
+                text-align: center;
+                padding-top: 20px;
+                color: white;
+                font-size: 20px;
+              "
+            >
+              <span>Now Playing</span>
+            </div>
             <div class="img-con">
               <img
                 src="./music/2face/2face African QUEEN.png"
@@ -41,29 +53,42 @@
               </span>
             </div>
             <div class="music-timer-con">
-              <div class="big-timer"></div>
-              <div class="smal-holder">
-                <div class="smal-timer"></div>
-                <span class="inner-smal-timer"></span>
+              <div class="big-timer">
+                <div class="smal-holder"></div>
+                <div class="load">
+                  <div class="min">00:19</div>
+                  <div class="sec">08:5</div>
+                </div>
               </div>
             </div>
             <div class="song">
               <!-- <span class="song-title">African queen</span> -->
               <span class="music-control">
-                <i class="fas fa-repeat-alt"></i>
-                <i class="fas fa-step-backward prev"></i>
-                <i class="fas fa-play-circle play"></i>
-                <i class="fas fa-pause" id="pause"></i>
+                <div class="icon-holder">
+                  <i class="fas fa-repeat-music"></i>
+                  <i class="fas fa-step-backward prev"></i>
+                  <i class="fas fa-play-circle play"></i>
+                  <i class="fas fa-pause" id="pause"></i>
 
-                <i class="fas fa-step-forward next"></i>
-                <i class="fas fa-list-alt" style="font-size: 15px"></i>
+                  <i class="fas fa-step-forward next"></i>
+                  <i class="fas fa-list-alt" style="font-size: 15px"></i>
+                </div>
               </span>
             </div>
           </div>
           <div class="allmusic"></div>
-          <span class="up"></span>
+          <!-- <span class="up"></span> -->
         </div>
-        <div class="container-2"></div>
+        <div class="container-2">
+          <div class="back" style="color: #fff">
+            <i
+              class="fas fa-arrow-left left-2"
+              style="width: 40%; padding: 10px"
+            ></i>
+            <span style="font-size: 20px">playlist</span>
+          </div>
+          <div class="con"></div>
+        </div>
       </div>
     </div>
   </body>
