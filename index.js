@@ -10,12 +10,18 @@ const pause = document.querySelector("#pause");
 const container = document.querySelector(".container");
 const container2 = document.querySelector(".con");
 const contain = document.querySelector(".container-2");
+const container3 = document.querySelector(".container-3");
+const contain3 = document.querySelector(".con-3");
 const drop = document.querySelector(".drop");
 const song = document.createElement("audio");
 const songTitle = document.querySelector(".song-title");
 const airtsName = document.querySelector(".airts-name-title");
 const timer = document.querySelector(".smal-holder");
-
+const left = document.querySelector(".left-2");
+const left3 = document.querySelector(".left-3");
+const searchCon = document.querySelector(".search-con");
+const input = searchCon.querySelector("#search");
+const btn = document.querySelector(".btn");
 let position = 0;
 let currentP = 0;
 // functionalities;
@@ -104,6 +110,7 @@ function showAllPlayList() {
       >
     </span>
     <i class="fas fa-music  music-icon" id="${id}"> </i>
+    <i class="fas fa-pause" id="pau"></i>
   </div>
   <div class="under"></div>
   `;
@@ -113,12 +120,14 @@ function showAllPlayList() {
 showAllPlayList();
 
 const musIcon = document.querySelectorAll(".music-icon");
-const playList = document.querySelectorAll(".img-2");
+const playList = document.querySelectorAll(".playlist");
+const pau = document.querySelector("#pau");
 
 const musicIcons = () => {
-  const getMusicIco = musIcon.forEach((icon_el, i) => {
+  musIcon.forEach((icon_el, i) => {
     icon_el.addEventListener("click", (e) => {
       let pel = icon_el.parentElement;
+
       const moveSong = pel.querySelector(".move");
       moveSong.classList.remove("show");
       const getExactMusic = musicBank.find(({ id }) => {
@@ -127,24 +136,33 @@ const musicIcons = () => {
 
       song.src = getExactMusic.songUrl;
       song.play();
-      moveSong.classList.add("show");
     });
   });
 };
 musicIcons();
+// musIcon.forEach((p) => {
+//   let pel = p.parentElement;
+
+//   const moveSong = pel.querySelector(".move");
+//   p.addEventListener("click", () => {
+//     song.pause();
+//     moveSong.classList.remove("show");
+//   });
+// });
 
 function displayEachOnClick() {
   playList.forEach((play_el, i) => {
     play_el.addEventListener("click", () => {
       displaySong(i);
       container.style.display = "flex";
+      song.play();
       contain.style.display = "none";
     });
   });
 }
 
 displayEachOnClick();
-
+// function music timer
 const musicController = () => {
   song.addEventListener("timeupdate", (e) => {
     let currentTime = e.target.currentTime;
@@ -179,8 +197,11 @@ const musicController = () => {
 };
 musicController();
 
-const left = document.querySelector(".left-2");
 left.addEventListener("click", () => {
   container.style.display = "flex";
   contain.style.display = "none";
+});
+left3.addEventListener("click", () => {
+  container.style.display = "none";
+  contain.style.display = "block";
 });
