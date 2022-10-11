@@ -22,6 +22,7 @@ const left3 = document.querySelector(".left-3");
 const searchCon = document.querySelector(".search-con");
 const input = searchCon.querySelector("#search");
 const btn = document.querySelector(".btn");
+const imgCon = document.querySelector(".img-con");
 let position = 0;
 let currentP = 0;
 // functionalities;
@@ -35,7 +36,6 @@ function displaySong(a) {
   song.src = musicBank[a].songUrl;
   song.load();
 }
-
 displaySong(position);
 // 2. function onclick play song
 function playSong() {
@@ -44,6 +44,7 @@ function playSong() {
     pause.style.display = "block";
     musicController();
     song.play();
+    img.classList.add("music-lay");
   });
 }
 playSong();
@@ -54,6 +55,7 @@ function pauseSong() {
     pause.style.display = "none";
     play.style.display = "block";
     song.pause();
+    img.classList.remove("music-lay");
   });
 }
 pauseSong();
@@ -69,6 +71,15 @@ function nextSong(el) {
       displaySong(el);
     }
     song.play();
+    if (play) {
+      play.style.display = "none";
+      pause.style.display = "flex";
+      img.classList.add("music-lay");
+    } else {
+      play.style.display = "flex";
+      pause.style.display = "none";
+      img.classList.remove("music-lay");
+    }
   });
 }
 nextSong(position);
