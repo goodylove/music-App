@@ -14,27 +14,17 @@ body {
   /* overflow: hidden; */
 }
 
-.overall-container {
-  height: 89%;
-  width: 100%;
-  background-color: #000;
+.container {
+  width: 35%;
+  /* height: 99%; */
+  background-color: rgb(110, 103, 103);
+  height: 100%;
   border-radius: 20px;
   box-shadow: 1px 1px 1px gray;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.container {
-  width: 30%;
-  /* height: 99%; */
-  background-color: rgb(110, 103, 103);
-  max-height: 100%;
-  border-radius: 20px;
-  box-shadow: 1px 1px 1px gray;
   display: none;
   justify-content: center;
-  position: absolute;
+  /* position: absolute; */
 
   transition: 0.5s;
   transform: translateY(30px);
@@ -60,12 +50,17 @@ body {
   position: absolute;
   top: 90%;
 }
+.overal-img-con {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+}
 .img-con {
   /* width: 100%; */
-  width: 300px;
-  height: 300px;
+  width: 339px;
+  height: 336px;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   display: flex;
 }
 
@@ -118,7 +113,7 @@ body {
   align-items: center;
 }
 .music-control {
-  padding: 20px;
+  padding: 30px 0px;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -142,6 +137,8 @@ body {
 
 .music-timer-con {
   position: relative;
+  position: relative;
+  padding: 30px 0px;
 }
 .music {
   width: 80%;
@@ -196,41 +193,22 @@ body {
 .container-2 {
   overflow-y: scroll;
   padding: 5px;
-  width: 30%;
-  /* height: 100%;
-   */
-  max-height: 100%;
+  width: 35%;
+
+  height: 100%;
   background-color: rgb(110, 103, 103);
 
   border-radius: 20px;
   box-shadow: 1px 1px 1px gray;
-  /* display: none; */
-  justify-content: center;
-  position: absolute;
-  z-index: 10;
 
-  transition: 0.5s;
-  transform: translateY(30px);
-}
-.container-3 {
+  justify-content: center;
+
   overflow-y: scroll;
-  padding: 5px;
-  width: 30%;
-  /* height: 100%;
-   */
-  max-height: 100%;
-  background-color: rgb(110, 103, 103);
-
-  border-radius: 20px;
-  box-shadow: 1px 1px 1px gray;
-  /* display: none; */
-  justify-content: center;
-  position: absolute;
-  display: none;
 
   transition: 0.5s;
   transform: translateY(30px);
 }
+
 .img-2 {
   height: 50px;
   width: 50px;
@@ -307,20 +285,34 @@ body {
 #pau {
   display: none;
 }
-@media screen and (max-width: 1048px) {
+@media screen and (max-width: 1366px) {
   .container {
     width: 39%;
+    height: 64%;
   }
   .container-2 {
     width: 39%;
+    height: 64%;
+  }
+}
+@media screen and (max-width: 1048px) {
+  .container {
+    width: 39%;
+    height: 64%;
+  }
+  .container-2 {
+    width: 39%;
+    height: 64%;
   }
 }
 @media screen and (max-width: 950px) {
   .container {
     width: 49%;
+    height: 64%;
   }
   .container-2 {
     width: 49%;
+    height: 64%;
   }
 }
 @media screen and (max-width: 622px) {
@@ -334,6 +326,7 @@ body {
 @media screen and (max-width: 650px) {
   .container {
     width: 60%;
+    height: 50%;
   }
   .img-con {
     height: 245px;
@@ -342,6 +335,7 @@ body {
   }
   .container-2 {
     width: 60%;
+    height: 50%;
   }
 }
 @media screen and (max-width: 556px) {
@@ -355,23 +349,28 @@ body {
 @media screen and (max-width: 488px) {
   .container {
     width: 80%;
+    height: 50%;
   }
   .container-2 {
     width: 80%;
+    height: 50%;
   }
 }
 @media screen and (max-width: 448px) {
   .container {
     width: 80%;
+    height: 50%;
   }
   .container-2 {
     width: 80%;
+    height: 50%;
   }
 }
 
 @media screen and (max-width: 388px) {
   .container {
     width: 100%;
+    height: 50%;
   }
   .img-con {
     height: 255px;
@@ -380,20 +379,24 @@ body {
   }
   .container-2 {
     width: 100%;
+    height: 50%;
   }
 }
 
 @media screen and (max-width: 350px) {
   .container {
     width: 89%;
+    height: 50%;
   }
   .container-2 {
     width: 89%;
+    height: 50%;
   }
 }
 @media screen and (max-width: 376px) {
   .container {
     width: 100%;
+    height: 50%;
   }
   .img-con {
     height: 259px;
@@ -401,12 +404,14 @@ body {
   }
   .container-2 {
     width: 100%;
+    height: 50%;
   }
 }
 
 @media screen and (max-width: 300px) {
   .container {
     width: 100%;
+    height: 50%;
   }
   .img-con {
     height: 244px;
@@ -414,5 +419,6 @@ body {
   }
   .container-2 {
     width: 100%;
+    height: 50%;
   }
 }
