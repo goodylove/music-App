@@ -16,7 +16,7 @@ html {
 .page-container {
   display: flex;
   justify-content: center;
-  height: 95%;
+  height: 100%;
   width: 360px;
   /* background: white; */
   overflow: hidden;
