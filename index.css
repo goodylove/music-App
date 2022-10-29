@@ -163,11 +163,11 @@ html {
   right: -5px;
   transform: translate(-50%);
   transition: opacity 0.2s ease;
-  opacity: 0;
-}
-.big-timer:hover .smal-holder::before {
   opacity: 1;
 }
+/* .big-timer:hover .smal-holder::before {
+  opacity: 1;
+} */
 
 .btn {
   width: 42%;

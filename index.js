@@ -1,5 +1,3 @@
-import marquee from "https://cdn.jsdelivr.net/npm/vanilla-marquee/dist/vanilla-marquee.js";
-// variable declaration
 
 const img = document.querySelector(".img");
 const music = document.querySelector(".music");
@@ -151,15 +149,7 @@ const musicIcons = () => {
   });
 };
 musicIcons();
-// musIcon.forEach((p) => {
-//   let pel = p.parentElement;
 
-//   const moveSong = pel.querySelector(".move");
-//   p.addEventListener("click", () => {
-//     song.pause();
-//     moveSong.classList.remove("show");
-//   });
-// });
 
 function displayEachOnClick() {
   playList.forEach((play_el, i) => {
@@ -176,34 +166,43 @@ displayEachOnClick();
 // function music timer
 const musicController = () => {
   song.addEventListener("timeupdate", (e) => {
+    let $current = container.querySelector(".min");
+    let $duration = container.querySelector(".sec");
     let currentTime = e.target.currentTime;
     let duration = e.target.duration;
+    console.log(duration);
     let progressWidth = (currentTime / duration) * 100;
     timer.style.width = `${progressWidth}%`;
+    let curentMusicTime = song.currentTime;
+    console.log(curentMusicTime);
+    let currentMinute = Math.floor(curentMusicTime / 60);
+    let currentSecond = Math.floor(curentMusicTime - currentMinute * 60);
+    if (currentSecond < 10) {
+      currentSecond = `0${currentSecond}`;
+    }
+    $current.innerText = `${currentMinute}:${currentSecond}`;
+    console.log(currentSecond);
 
-    song.addEventListener("loadeddata", (e) => {
-      console.log(e);
-      let current = container.querySelector(".min");
-      let duration = container.querySelector(".sec");
-      let musicDuration = song.duration;
-      // update song duration
+    // song.addEventListener("loadeddata", (e) => {
+    //   console.log(e);
+    //   // let $current = container.querySelector(".min");
+    //   // let $duration = container.querySelector(".sec");
 
-      let totalMin = Math.floor(musicDuration / 60);
-      let totalSec = Math.floor(musicDuration % 60);
-      if (totalSec < 10) {
-        totalSec = `0${totalSec}`;
-      }
-      duration.innerText = `${totalMin}:${totalSec}`;
-      // updating playing song current time
+    //   let musicDuration = song.duration;
+    //   console.log(musicDuration);
+    //   // update song duration
 
-      let curentMusic = song.currentTime;
-      let currentMin = Math.floor(curentMusic / 60);
-      let currentSec = Math.floor(curentMusic % 60);
-      if (currentSec < 10) {
-        currentSec = `0${currentSec}`;
-      }
-      current.innerText = `${currentMin}:${currentSec}`;
-    });
+    //   let totalMin = Math.floor(musicDuration / 60);
+
+    //   // console.log(totalMin);
+    //   let totalSec = Math.floor(musicDuration - totalMin * 60);
+    //   // console.log(totalSec);
+    //   if (totalSec < 10) {
+    //     totalSec = `0${totalSec}`;
+    //   }
+    //   $duration.innerText = `${totalMin}:${totalSec}`;
+
+    // });
   });
 };
 musicController();
